@@ -371,7 +371,10 @@ zygosityCountsPerSample <- function(GTmatrix){
 
 zygosityCountsPerSample(zygosityMatrix)
 
-GTResultsMatrixPerSample[1,1]
+
+help(chisq.test)
+
+
 
 
 printZygosityCountsPerSite <- function(GTmatrix){
