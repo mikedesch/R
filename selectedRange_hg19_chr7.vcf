@@ -1,0 +1,74 @@
+##fileformat=VCFv4.1
+##center=Complete Genomics
+##fileDate=20210329
+##phasing=partial
+##reference=ftp://ftp.completegenomics.com/ReferenceFiles/build37.fa.bz2
+##source=CGAPipeline_2.0.0.32
+##FILTER=<ID=PASS,Description="All filters passed">
+##FILTER=<ID=MPCBT,Description="Mate pair count below 10">
+##FILTER=<ID=SHORT,Description="Junction side length below 70">
+##FILTER=<ID=TSNR,Description="Transition sequence not resolved">
+##FILTER=<ID=URR,Description="Too close to an underrepresented repeat">
+##INFO=<ID=CGA_BF,Number=1,Type=Float,Description="Frequency in baseline">
+##INFO=<ID=CGA_BNDG,Number=A,Type=String,Description="Transcript name and strand of genes containing breakend">
+##INFO=<ID=CGA_BNDGO,Number=A,Type=String,Description="Transcript name and strand of genes containing mate breakend">
+##INFO=<ID=CGA_FI,Number=A,Type=String,Description="Functional impact annotation">
+##INFO=<ID=CGA_MEDEL,Number=4,Type=String,Description="Consistent with deletion of mobile element; type,chromosome,start,end">
+##INFO=<ID=CGA_MIRB,Number=.,Type=String,Description="miRBaseId">
+##INFO=<ID=CGA_PFAM,Number=.,Type=String,Description="PFAM Domain">
+##INFO=<ID=CGA_RPT,Number=.,Type=String,Description="repeatMasker overlap information">
+##INFO=<ID=CGA_SDO,Number=1,Type=Integer,Description="Number of distinct segmental duplications that overlap this locus">
+##INFO=<ID=CGA_WINEND,Number=1,Type=Integer,Description="End of coverage window">
+##INFO=<ID=CGA_XR,Number=A,Type=String,Description="Per-ALT external database reference (dbSNP, COSMIC, etc)">
+##INFO=<ID=END,Number=1,Type=Integer,Description="End position of the variant described in this record">
+##INFO=<ID=MATEID,Number=1,Type=String,Description="ID of mate breakend">
+##INFO=<ID=NS,Number=1,Type=Integer,Description="Number of Samples With Data">
+##INFO=<ID=SS,Number=1,Type=String,Description="Somatic Status: Germline, Somatic, LOH, or . (Unknown)">
+##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of structural variant">
+##ALT=<ID=CGA_CNVWIN,Description=Copy number analysis window>
+##ALT=<ID=CGA_NOCALL,Description=No-called record>
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=AD,Number=2,Type=Integer,Description="Allelic depths (number of reads in each observed allele)">
+##FORMAT=<ID=CGA_BNDDEF,Number=1,Type=String,Description="Breakend definition">
+##FORMAT=<ID=CGA_BNDMPC,Number=1,Type=Integer,Description="Mate pair count supporting breakend">
+##FORMAT=<ID=CGA_BNDP,Number=1,Type=String,Description="Precision of breakend">
+##FORMAT=<ID=CGA_BNDPOS,Number=1,Type=Integer,Description="Breakend position">
+##FORMAT=<ID=CGA_CL,Number=1,Type=Float,Description="Nondiploid-model called level">
+##FORMAT=<ID=CGA_CP,Number=1,Type=Integer,Description="Diploid-model called ploidy">
+##FORMAT=<ID=CGA_CT,Number=1,Type=String,Description="Diploid-model CNV type">
+##FORMAT=<ID=CGA_EHQ,Number=2,Type=Integer,Description="Haplotype Quality, Equal Allele Fraction Assumption">
+##FORMAT=<ID=CGA_GP,Number=1,Type=Float,Description="Depth of coverage for 2k window GC normalized to mean">
+##FORMAT=<ID=CGA_LAF,Number=1,Type=Float,Description="Lesser allele fraction estimate, 100k window">
+##FORMAT=<ID=CGA_LLAF,Number=1,Type=Float,Description="Lesser allele fraction lower bound, 100k window">
+##FORMAT=<ID=CGA_LS,Number=1,Type=Integer,Description="Nondiploid-model called level score">
+##FORMAT=<ID=CGA_OAD,Number=2,Type=Integer,Description="Other Allelic depths (number of reads in other sample in each observed allele of this sample)">
+##FORMAT=<ID=CGA_ODP,Number=1,Type=Integer,Description="Other Total Read Depth (read depth of other sample in somatic comparison)">
+##FORMAT=<ID=CGA_ORDP,Number=1,Type=Integer,Description="Other Reference Depth (number of reads in other sample observed supporting the reference allele)">
+##FORMAT=<ID=CGA_PS,Number=1,Type=Integer,Description="Diploid-model called ploidy score">
+##FORMAT=<ID=CGA_RDP,Number=1,Type=Integer,Description="Number of reads observed supporting the reference allele">
+##FORMAT=<ID=CGA_SCL,Number=1,Type=Float,Description="Nondiploid-model somatic called level">
+##FORMAT=<ID=CGA_SLS,Number=1,Type=Integer,Description="Nondiploid-model somatic called level score">
+##FORMAT=<ID=CGA_SOMC,Number=1,Type=String,Description="somaticCategory">
+##FORMAT=<ID=CGA_SOMR,Number=1,Type=String,Description="somaticRank">
+##FORMAT=<ID=CGA_SOMS,Number=1,Type=Float,Description="somaticScore">
+##FORMAT=<ID=CGA_TS,Number=1,Type=Integer,Description="Diploid-model CNV type score">
+##FORMAT=<ID=CGA_ULAF,Number=1,Type=Float,Description="Lesser allele fraction upper bound, 100k window">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Total Read Depth">
+##FORMAT=<ID=FT,Number=1,Type=String,Description="Genotype filters">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=HQ,Number=2,Type=Integer,Description="Haplotype Quality">
+##FORMAT=<ID=PS,Number=1,Type=Integer,Description="Phase Set">
+##contig=<ID=7,assembly="hg19">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	HCC1187-H-200-37-ASM-N1	HCC1187-H-200-37-ASM-T1
+7	55000723	7:55000723_ACATATACATACATACATACAT/.	ACATATACATACATACATACAT	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	0/0:0	./.:0
+7	55000745	7:55000745_ACATACATA/.	ACATACATA	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	./.:0
+7	55000754	7:55000754_CATAC/.	CATAC	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	0/0:0	./.:0
+7	55000759	7:55000759_ATACATACAT/.	ATACATACAT	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	./.:0
+7	55000769	7:55000769_ACATACATATATATATAATTA/.	ACATACATATATATATAATTA	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	0/0:0	./.:0
+7	55000870	7:55000870_A/.	A	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
+7	55000876	7:55000876_G/.	G	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
+7	55000895	7:55000895_G/.	G	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
+7	55000922	7:55000922_G/.	G	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
+7	55000927	7:55000927_CGC/.	CGC	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
+7	55000958	7:55000958_GCT/.	GCT	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
+7	55001088	7:55001088_C/.	C	.	.	.	CGA_BNDG=.;CGA_BNDGO=.;CGA_FI=.;CGA_XR=.;NS=2	GT:PS	./.:0	0/0:0
