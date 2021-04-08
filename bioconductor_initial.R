@@ -303,6 +303,8 @@ zygosityCountsPerSample <- function(GTmatrix){
   ## adding up counts for each of "./.", "0/0", "1/1", "0/1"
   ## via the count(matrix, value=termToMatchOn) function
   
+  ## C.f. this "outer" loop (to the inner "count()" loops) is in row-major order
+  ## i.e. akin to the elements of a row being consecutively referenced / "contiguous in memory"
   for (i in 1:numberSamples){
     
     ## print("inside loop i = ")
@@ -321,6 +323,8 @@ zygosityCountsPerSample <- function(GTmatrix){
     ## the count() function is used to loop through and count the zygosity numbers,
     ## on a per-sample basis (i.e. count() iterates on the VCF records (i.e. the rows)
     ## of a given sample/column, while the outer loop iterates on the columns themselves)
+    ## C.f. these inner loops (to the outer for-loop) is in column-major order
+    ## i.e. akin to the elements of a column being consecutively referenced / "contiguous in memory"
     
     numberGTNotAvailable      <- count(GTmatrix[,i], value = "./.")
     
@@ -373,6 +377,14 @@ zygosityCountsPerSample(zygosityMatrix)
 
 
 help(chisq.test)
+
+
+help(write.csv)
+
+write.csv(GTResultsMatrixPerSample, "GTResultsMatrixPerSample.csv")
+
+
+
 
 
 
