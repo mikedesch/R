@@ -76,7 +76,7 @@ read.vcfR("variants.vcf") %>%
 ## Begin: dplyr (data manipulation, including for piping, i.e. %>%)
 
     library(dplyr)
-
+    
 ## End: dplyr (data manipulation, including for piping, i.e. %>%)
 
 ## Begin: "benchmarkme" -> https://github.com/csgillespie/benchmarkme
@@ -284,11 +284,13 @@ class(zygosityMatrix)
 dim(zygosityMatrix)
 count(zygosityMatrix[1,], value = "./.")
 help(count)
-count
 
 ## defining the dimensions of GTResultsMatrix, which is a 100-column, 4-row matrix,
 ## i.e. dim(GTResultsMatrix) returns [1] 4  100 (rows first, columns second)
+
 GTResultsMatrixPerSample <- matrix(nrow = 4, ncol = 100)
+
+# GTResultsMatrixPerSample <- matrix(nrow = 100, ncol = 4)
 
 dim(zygosityMatrix)
 
@@ -345,6 +347,11 @@ zygosityCountsPerSample <- function(GTmatrix){
     GTResultsMatrixPerSample[3,i] <<- numberGTHomozygousAlt
     GTResultsMatrixPerSample[4,i] <<- numberGTHeterozygous
     
+    # GTResultsMatrixPerSample[i,1] <<- numberGTNotAvailable
+    # GTResultsMatrixPerSample[i,2] <<- numberGTHomozygousRef
+    # GTResultsMatrixPerSample[i,3] <<- numberGTHomozygousAlt
+    # GTResultsMatrixPerSample[i,4] <<- numberGTHeterozygous
+    
   }
   
   
@@ -384,7 +391,7 @@ help(write.csv)
 write.csv(GTResultsMatrixPerSample, "GTResultsMatrixPerSample.csv")
 
 
-
+convertGTResultsMatrixPerSampleTo
 
 
 
