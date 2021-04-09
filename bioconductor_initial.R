@@ -285,14 +285,12 @@ dim(zygosityMatrix)
 count(zygosityMatrix[1,], value = "./.")
 help(count)
 
-## defining the dimensions of GTResultsMatrix, which is a 100-column, 4-row matrix,
-## i.e. dim(GTResultsMatrix) returns [1] 4  100 (rows first, columns second)
+## defining the dimensions of GTResultsMatrixPerSample, which is a 100-column, 4-row matrix,
+## i.e. dim(GTResultsMatrixPerSample) returns [1] 100  4 (rows first, columns second)
 
-GTResultsMatrixPerSample <- matrix(nrow = 4, ncol = 100)
+GTResultsMatrixPerSample <- matrix(nrow = 100, ncol = 4)
+dim(GTResultsMatrixPerSample)
 
-# GTResultsMatrixPerSample <- matrix(nrow = 100, ncol = 4)
-
-dim(zygosityMatrix)
 
 zygosityCountsPerSample <- function(GTmatrix){
   
@@ -339,18 +337,12 @@ zygosityCountsPerSample <- function(GTmatrix){
     
     
     
-    ## saving the resulting counts for each sample in a matrix of size 4 x 100
+    ## saving the resulting counts for each sample in a matrix of size 100 rows x 4 columns
     ## (each of the 100 samples has 4 counts)
-    
-    GTResultsMatrixPerSample[1,i] <<- numberGTNotAvailable
-    GTResultsMatrixPerSample[2,i] <<- numberGTHomozygousRef
-    GTResultsMatrixPerSample[3,i] <<- numberGTHomozygousAlt
-    GTResultsMatrixPerSample[4,i] <<- numberGTHeterozygous
-    
-    # GTResultsMatrixPerSample[i,1] <<- numberGTNotAvailable
-    # GTResultsMatrixPerSample[i,2] <<- numberGTHomozygousRef
-    # GTResultsMatrixPerSample[i,3] <<- numberGTHomozygousAlt
-    # GTResultsMatrixPerSample[i,4] <<- numberGTHeterozygous
+    GTResultsMatrixPerSample[i,1] <<- numberGTNotAvailable
+    GTResultsMatrixPerSample[i,2] <<- numberGTHomozygousRef
+    GTResultsMatrixPerSample[i,3] <<- numberGTHomozygousAlt
+    GTResultsMatrixPerSample[i,4] <<- numberGTHeterozygous
     
   }
   
@@ -373,9 +365,9 @@ zygosityCountsPerSample <- function(GTmatrix){
   print("sample 1 zygosity Results:")
   
   cat(sprintf("%i counts of './.'", GTResultsMatrixPerSample[1,1]),"\n")
-  cat(sprintf("%i counts of '0/0'", GTResultsMatrixPerSample[2,1]),"\n")
-  cat(sprintf("%i counts of '1/1'", GTResultsMatrixPerSample[3,1]),"\n")
-  cat(sprintf("%i counts of '0/1'", GTResultsMatrixPerSample[4,1]))
+  cat(sprintf("%i counts of '0/0'", GTResultsMatrixPerSample[1,2]),"\n")
+  cat(sprintf("%i counts of '1/1'", GTResultsMatrixPerSample[1,3]),"\n")
+  cat(sprintf("%i counts of '0/1'", GTResultsMatrixPerSample[1,4]))
   
 }
 
@@ -388,7 +380,7 @@ help(chisq.test)
 
 help(write.csv)
 
-write.csv(GTResultsMatrixPerSample, "GTResultsMatrixPerSample.csv")
+write.csv(GTResultsMatrixPerSample, "GTResultsMatrixPerSample2.csv")
 
 
 convertGTResultsMatrixPerSampleTo
