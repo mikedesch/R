@@ -1,0 +1,139 @@
+﻿New Table( "GTResultsMatrixPerSample_Population1_Cone_1-35",
+	Add Rows( 35 ),
+	New Script(
+		"Source",
+		Data Table( "GTResultsMatrixPerSample2" ) <<
+		Subset(
+			Selected Rows( 0 ),
+			Rows(
+				[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+				20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+			),
+			Selected columns only( 0 )
+		)
+	),
+	New Column( "Sample #",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+			21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+		),
+		Set Display Width( 50 )
+	),
+	New Column( "Actual ./.",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[4307, 5110, 4796, 1340, 1450, 4932, 4970, 4827, 4818, 4725, 5086, 1387,
+			4847, 4795, 1602, 5126, 4988, 4712, 4748, 4768, 4971, 1380, 5017, 4560,
+			4767, 4898, 5328, 4774, 4835, 4889, 3682, 1337, 1353, 1305, 5063]
+		),
+		Set Display Width( 55 )
+	),
+	New Column( "Actual 0/0",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[12601, 12067, 12362, 14888, 14914, 12204, 12073, 12163, 12207, 12309,
+			11981, 14844, 12148, 12261, 14681, 11985, 12073, 12248, 12322, 12292,
+			12083, 14874, 12023, 12463, 12269, 12129, 11762, 12233, 12190, 12273,
+			13096, 14890, 14904, 14867, 12014]
+		),
+		Set Display Width( 61 )
+	),
+	New Column( "Actual 1/1",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[474, 478, 498, 553, 490, 455, 466, 449, 375, 408, 410, 544, 420, 419,
+			499, 398, 401, 426, 425, 438, 391, 508, 453, 420, 407, 439, 502, 433,
+			440, 436, 524, 613, 601, 539, 412]
+		),
+		Set Display Width( 57 )
+	),
+	New Column( "Actual 0/1",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[936, 663, 662, 1537, 1464, 727, 809, 879, 918, 876, 841, 1543, 903, 843,
+			1536, 809, 856, 932, 823, 820, 873, 1556, 825, 875, 875, 852, 726, 878,
+			853, 720, 1016, 1478, 1460, 1607, 829]
+		),
+		Set Display Width( 59 )
+	),
+	New Column( "Expected 0/0",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula( Local( {t1}, Col Sum( :Name( "Actual 0/0" ) ) / N Row() ) ),
+		Set Display Width( 65 )
+	),
+	New Column( "Expected 1/1",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula( Local( {t1}, Col Sum( :Name( "Actual 1/1" ) ) / N Row() ) ),
+		Set Display Width( 65 )
+	),
+	New Column( "Expected 0/1",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula( Local( {t1}, Col Sum( :Name( "Actual 0/1" ) ) / N Row() ) ),
+		Set Display Width( 66 )
+	),
+	New Column( "Test Statistic for Chi-Square: 0/0",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula(
+			(:Name( "Actual 0/0" ) - :Name( "Expected 0/0" )) ^ 2 /
+			:Name( "Expected 0/0" )
+		),
+		Set Display Width( 115 )
+	),
+	New Column( "Test Statistic for Chi-Square: 1/1",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula(
+			(:Name( "Actual 1/1" ) - :Name( "Expected 1/1" )) ^ 2 /
+			:Name( "Expected 1/1" )
+		),
+		Set Display Width( 109 )
+	),
+	New Column( "Test Statistic for Chi-Square: 0/1",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula(
+			(:Name( "Actual 0/1" ) - :Name( "Expected 0/1" )) ^ 2 /
+			:Name( "Expected 0/1" )
+		),
+		Set Display Width( 108 )
+	),
+	New Column( "Test Statistic for Chi-Square: Sum(0/0, 1/1, 0/1)",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Formula(
+			:Name( "Test Statistic for Chi-Square: 0/0" ) +
+			:Name( "Test Statistic for Chi-Square: 1/1" ) +
+			:Name( "Test Statistic for Chi-Square: 0/1" )
+		),
+		Set Display Width( 163 )
+	)
+) << Run Formulas;
+Graph Builder(
+	Variables(
+		X( :Sample # ),
+		Y( :Name( "Test Statistic for Chi-Square: Sum(0/0, 1/1, 0/1)" ) )
+	),
+	Elements( Points( X, Y, Legend( 3 ) ) )
+);
