@@ -1,0 +1,9 @@
+population 1 (Cone) - Samples 1 - 35
+population 1 (Thistle) - Samples 36 - 56
+population 1 (Cup) - Samples 57 - 76
+
+population 2 (Cone) - Samples 77 - 82, 84
+population 2 (Thistle) - Samples 83, 85 - 92, 97 - 100
+population 2 (Cup) - Samples 93 - 96
+
+
