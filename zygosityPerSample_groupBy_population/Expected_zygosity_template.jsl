@@ -1,0 +1,17 @@
+
+Add Custom Functions(
+	{New Custom Function(
+		"custom",
+		"User Defined Function 1",
+		Function( {Name( "Actual 0/0" )},
+			{Default Local},
+			((Col Sum( Name( "Actual 0/0" ) ) / (18318 * 35)) * 18318) * 1
+		),
+		<<Description( "" ),
+		<<Prototype( "" ),
+		<<Formula Category( "" ),
+		<<Scripting Index Category( "" ),
+		<<Result Type( {"Any"} ),
+		<<Parameter( {"Any"}, "" )
+	)}
+);
