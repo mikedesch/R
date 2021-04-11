@@ -326,6 +326,7 @@ zygosityCountsPerSample <- function(GTmatrix){
     ## C.f. these inner loops (to the outer for-loop) is in column-major order
     ## i.e. akin to the elements of a column being consecutively referenced / "contiguous in memory"
     
+    help(count)
     numberGTNotAvailable      <- count(GTmatrix[,i], value = "./.")
     
     numberGTHomozygousRef     <- count(GTmatrix[,i], value = "0/0")

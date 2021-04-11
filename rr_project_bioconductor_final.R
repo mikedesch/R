@@ -40,6 +40,7 @@ library(VariantAnnotation)
 ## Begin: dplyr (data manipulation, including for piping, i.e. %>%)
 
 library(dplyr)
+unloadNamespace("dplyr")
 
 ## End: dplyr (data manipulation, including for piping, i.e. %>%)
 
@@ -167,13 +168,13 @@ zygosityCountsPerSample <- function(GTmatrix){
     ## of a given sample/column, while the outer loop iterates on the columns themselves)
     ## C.f. these inner loops (to the outer for-loop) is in column-major order
     ## i.e. akin to the elements of a column being consecutively referenced / "contiguous in memory"
-    numberGTNotAvailable      <- count(GTmatrix[,i], value = "./.")
+    numberGTNotAvailable      <- matrixStats::count(GTmatrix[,i], value = "./.")
     
-    numberGTHomozygousRef     <- count(GTmatrix[,i], value = "0/0")
+    numberGTHomozygousRef     <- matrixStats::count(GTmatrix[,i], value = "0/0")
     
-    numberGTHomozygousAlt     <- count(GTmatrix[,i], value = "1/1")
+    numberGTHomozygousAlt     <- matrixStats::count(GTmatrix[,i], value = "1/1")
     
-    numberGTHeterozygous      <- count(GTmatrix[,i], value = "0/1")
+    numberGTHeterozygous      <- matrixStats::count(GTmatrix[,i], value = "0/1")
     
     
     
@@ -205,10 +206,10 @@ zygosityCountsPerSample <- function(GTmatrix){
 zygosityCountsPerSample(zygosityMatrix)
 
 
-## Function for getting an average for Run-Time performance
+## Function for iterating on a Run-Time performance test
 ## for a user-provided (default = 50) number of iterations
-## Output: a RunTimePerformanceResultsMatrix.csv file containing
-## the results
+## Output: a RunTimePerformanceResultsMatrix.csv file
+## containing the results
 getRunTimePerformance <- function(number = 50){
   
   ## Matrix used to store the results from each of the Run-Time performance tests.
@@ -217,9 +218,8 @@ getRunTimePerformance <- function(number = 50){
 
   for (i in 1:number){
     
-    ## Ensure that the outputs from each iteration of the loop
-    ## are removed between each iteration of the performance test.
-    if (exists("zygosityMatrix")){ rm(zygosityMatrix) }
+    ## Ensure that GTResultsMatrixPerSample is removed
+    ## between each iteration of the performance test.
     if (exists("GTResultsMatrixPerSample")){ rm(GTResultsMatrixPerSample) }
     
     ## re-initializing the GTResultsMatrixPerSample to an empty matrix ; dim = [1] 100 4
@@ -229,9 +229,9 @@ getRunTimePerformance <- function(number = 50){
     StartTime <- Sys.time()
     
     
-      zygosityMatrix <- readGeno("variants.vcf", "GT", row.names = FALSE)
-    
-      zygosityCountsPerSample(zygosityMatrix)
+      readGeno("variants.vcf", "GT", row.names = FALSE) %>%
+        
+                zygosityCountsPerSample()
       
     RunTime <- Sys.time() - StartTime
     
@@ -240,14 +240,56 @@ getRunTimePerformance <- function(number = 50){
     
   }
   
-  
+  ## write the matrix 'RunTimePerformanceResultsMatrix' to .csv file
   write.csv(RunTimePerformanceResultsMatrix, "RunTimePerformanceResultsMatrix.csv")
   
     
 }
 
 
+
+
+## Function for getting an average for Memory performance
+## for a user-provided (default = 50) number of iterations
+## Output: a MemoryPerformanceResultsMatrix.csv file
+## containing the results
+getMemoryPerformance <- function(number = 50){
+  
+  ## Matrix used to store the results from each of the Memory performance tests.
+  MemoryPerformanceResultsMatrix <- matrix(nrow = number, ncol = 1)
+  
+  
+  for (i in 1:number){
+    
+    ## Ensure that GTResultsMatrixPerSample is removed
+    ## between each iteration of the performance test.
+    if (exists("GTResultsMatrixPerSample")){ rm(GTResultsMatrixPerSample) }
+    
+    ## re-initializing the GTResultsMatrixPerSample to an empty matrix ; dim = [1] 100 4
+    GTResultsMatrixPerSample <- matrix(nrow = 100, ncol = 4)
+    
+    
+    ## Saving each Memory performance result straight into MemoryPerformanceResultsMatrix[]
+    ## the output to the mem_change function is the change in memory IN BYTES
+    MemoryPerformanceResultsMatrix[i,1] <- mem_change(
+      
+                                          readGeno("variants.vcf", "GT", row.names = FALSE) %>%
+                                                               
+                                          zygosityCountsPerSample()
+                                          )
+    
+  }
+  
+  ## write matrix 'MemoryPerformanceResultsMatrix' to .csv file
+  write.csv(MemoryPerformanceResultsMatrix, "MemoryPerformanceResultsMatrix.csv")
+  
+  
+}
+
+
 getRunTimePerformance(10)
+
+getMemoryPerformance(10)
 
 
 
